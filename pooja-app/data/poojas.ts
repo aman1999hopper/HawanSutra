@@ -2,25 +2,28 @@ export const poojaList = [
   {
     id: "ganesh-puja",
     title: "Ganesh Puja",
-    shortDesc: "A ritual worship to remove obstacles and bring prosperity.",
+    category: "Prosperity",
+    shortDesc: "To remove obstacles and bring prosperity.",
     price: 2100,
     durationMinutes: 60,
-    image: "/poojas/ganesh-pooja.jpg"
+    image: "/poojas/ganesh-pooja.jpg",
   },
   {
     id: "rudra-abhishek",
     title: "Rudra Abhishek",
-    shortDesc: "Powerful Shiv puja for health, wealth and positivity.",
+    category: "Health",
+    shortDesc: "Powerful Shiv puja for health and positivity.",
     price: 5100,
     durationMinutes: 90,
-    image: "/poojas/rudra.jpg"
+    image: "/poojas/rudra.jpg",
   },
   {
     id: "navgrah-shanti",
     title: "Navgrah Shanti",
-    shortDesc: "Puja to balance your planetary doshas.",
+    category: "Planets",
+    shortDesc: "Balances planetary doshas.",
     price: 11000,
     durationMinutes: 120,
-    image: "/poojas/navgrah.jpg"
+    image: "/poojas/navgrah.jpg",
   }
-]
+];
