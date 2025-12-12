@@ -1,0 +1,20 @@
+import Link from "next/link";
+
+export default function Navbar() {
+  return (
+    <nav className="w-full bg-white shadow sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <Link href="/" className="text-xl font-bold text-orange-600">
+          PujaGenie 🕉️
+        </Link>
+
+        <div className="flex gap-6 text-gray-700">
+          <Link href="/" className="hover:text-orange-600 transition">Home</Link>
+          <Link href="/poojas" className="hover:text-orange-600 transition">Poojas</Link>
+          <Link href="/booking" className="hover:text-orange-600 transition">Book Now</Link>
+          <Link href="/admin" className="hover:text-orange-600 transition">Admin</Link>
+        </div>
+      </div>
+    </nav>
+  );
+}
