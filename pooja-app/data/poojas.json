@@ -1,9 +1,21 @@
 [
   {
-    "id": "ganesh-puja",
-    "title": "Ganesh Puja",
-    "shortDesc": "Removes obstacles and brings prosperity",
-    "price": 2100
+    "id": "a7ddef04-368f-4e5f-9cc7-76f9a2caf830",
+    "title": "New Pooja",
+    "shortDesc": "Edit description",
+    "price": 1000
+  },
+  {
+    "id": "e3d417d0-eb77-4d6f-b49b-46dc85910d2f",
+    "title": "New Pooja",
+    "shortDesc": "Edit description",
+    "price": 1000
+  },
+  {
+    "id": "8c02088a-adf2-45b5-8097-55ffaaf35dab",
+    "title": "New Pooja",
+    "shortDesc": "Edit description",
+    "price": 1000
   },
   {
     "id": "rudra-abhishek",

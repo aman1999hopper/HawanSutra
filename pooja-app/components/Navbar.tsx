@@ -16,7 +16,7 @@ export default function Navbar() {
           <Link href="/admin" className="hover:text-orange-600 text-white transition">Admin</Link>
         </div>
         <div>
-            <Button>Click On Me</Button>
+            <Button>Signup</Button>
         </div>
       </div>
     </nav>

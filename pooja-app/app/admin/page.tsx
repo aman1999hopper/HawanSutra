@@ -78,9 +78,9 @@ export default function AdminPage() {
         {poojas.map((pooja) => (
           <Card key={pooja.id} className="p-4 flex justify-between">
             <div>
-              <h3 className="font-semibold">{pooja.title}</h3>
+              <h3 className="font-semibold text-gray-600">{pooja.title}</h3>
               <p className="text-sm text-gray-600">{pooja.shortDesc}</p>
-              <p className="text-sm">₹{pooja.price}</p>
+              <p className="text-sm text-gray-600">₹{pooja.price}</p>
             </div>
 
             <Button variant="outline" onClick={() => deletePooja(pooja.id)}>
