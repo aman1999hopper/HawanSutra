@@ -22,6 +22,11 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
+    const isAdmin = localStorage.getItem("isAdmin");
+    if (!isAdmin) {
+      window.location.href = "/login";
+    }
+
     let isMounted = true;
 
     const fetchData = async () => {
@@ -69,6 +74,17 @@ export default function AdminPage() {
 
   return (
     <div className="space-y-6">
+      <div>
+        <Button
+          variant="outline"
+          onClick={() => {
+            localStorage.removeItem("isAdmin");
+            window.location.href = "/login";
+          }}
+        >
+          Logout
+        </Button>
+      </div>
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-800">Manage Poojas</h1>
         <Button onClick={addPooja}>+ Add Pooja</Button>
