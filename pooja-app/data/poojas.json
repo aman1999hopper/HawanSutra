@@ -1,0 +1,14 @@
+[
+  {
+    "id": "ganesh-puja",
+    "title": "Ganesh Puja",
+    "shortDesc": "Removes obstacles and brings prosperity",
+    "price": 2100
+  },
+  {
+    "id": "rudra-abhishek",
+    "title": "Rudra Abhishek",
+    "shortDesc": "Powerful Shiv puja for health",
+    "price": 5100
+  }
+]

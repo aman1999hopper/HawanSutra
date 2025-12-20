@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Card from "@/components/ui/Card";
 
 type Pooja = {
   id: string;
@@ -9,35 +10,49 @@ type Pooja = {
   image?: string;
 };
 
-export default function PoojaCard({ pooja }: { pooja: Pooja }) {
+const PoojaCard = ({ pooja }: { pooja: Pooja }) => {
   return (
     <Link
       href={`/poojas/${pooja.id}`}
-      className="block bg-white shadow hover:shadow-lg transition rounded-lg overflow-hidden"
+      className="block"
     >
-      <div className="h-40 bg-gray-100">
-        {pooja.image ? (
-          <img src={pooja.image} className="w-full h-full object-cover" />
-        ) : (
-          <div className="flex items-center justify-center h-full text-gray-500">
-            No Image
-          </div>
-        )}
-      </div>
-
-      <div className="p-4">
-        <h3 className="font-semibold text-lg text-gray-700">{pooja.title}</h3>
-        <p className="text-gray-600 text-sm mt-1">{pooja.shortDesc}</p>
-
-        <div className="mt-3 flex justify-between items-center">
-          <span className="font-bold text-green-600">
-            ₹{pooja.price.toLocaleString()}
-          </span>
-          <span className="text-sm text-gray-500">
-            {pooja.durationMinutes ?? 60} min
-          </span>
+      <Card className="overflow-hidden">
+        {/* Image */}
+        <div className="h-40 bg-gray-100 flex items-center justify-center text-gray-500">
+          {pooja.image ? (
+            <img
+              src={pooja.image}
+              alt={pooja.title}
+              className="object-cover h-full w-full"
+            />
+          ) : (
+            <span className="text-sm">No image</span>
+          )}
         </div>
-      </div>
+
+        {/* Content */}
+        <div className="p-4">
+          <h3 className="font-semibold text-lg text-gray-800">
+            {pooja.title}
+          </h3>
+
+          <p className="text-sm text-gray-600 mt-1">
+            {pooja.shortDesc}
+          </p>
+
+          <div className="mt-3 flex items-center justify-between">
+            <span className="font-medium text-gray-800">
+              ₹{(pooja.price / 100).toFixed(2)}
+            </span>
+
+            <span className="text-xs text-gray-500">
+              {pooja.durationMinutes ?? 60} mins
+            </span>
+          </div>
+        </div>
+      </Card>
     </Link>
   );
-}
+};
+
+export default PoojaCard;

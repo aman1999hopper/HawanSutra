@@ -6,7 +6,7 @@ export default function Navbar() {
     <nav className="w-full sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold text-orange-600">
-          PujaGenie 🕉️
+          Hawan-Sutra 🕉️
         </Link>
 
         <div className="flex gap-6 text-gray-700">
