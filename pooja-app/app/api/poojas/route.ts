@@ -1,40 +1,23 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { connectDB } from "@/lib/db";
+import Pooja from "@/app/models/Pooja";
 
-const filePath = path.join(process.cwd(), "data", "poojas.json");
-
-type Pooja = {
-  id: string;
-  title: string;
-  shortDesc: string;
-  price: number;
-};
-
-// GET all poojas
 export async function GET() {
-  const data = fs.readFileSync(filePath, "utf-8");
-  return NextResponse.json(JSON.parse(data));
+  await connectDB();
+  const poojas = await Pooja.find();
+  return NextResponse.json(poojas);
 }
 
-// ADD new pooja
 export async function POST(req: Request) {
+  await connectDB();
   const body = await req.json();
-  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-
-  data.unshift(body);
-
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  await Pooja.create(body);
   return NextResponse.json({ success: true });
 }
 
-// DELETE pooja
 export async function DELETE(req: Request) {
+  await connectDB();
   const { id } = await req.json();
-  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-
-  const filtered = data.filter((p: Pooja) => p.id !== id);
-  fs.writeFileSync(filePath, JSON.stringify(filtered, null, 2));
-
+  await Pooja.findByIdAndDelete(id);
   return NextResponse.json({ success: true });
 }
