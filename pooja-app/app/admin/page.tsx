@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 
@@ -11,8 +11,33 @@ type Pooja = {
   price: number;
 };
 
+type Booking = {
+  _id: string;
+  poojaId: string;
+  name: string;
+  phone: string;
+  date: string;
+  createdAt: string;
+};
+
 export default function AdminPage() {
   const [poojas, setPoojas] = useState<Pooja[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
+
+  // Load Poojas
+  const loadBookings = useCallback(async () => {
+    try {
+      const res = await fetch("/api/bookings");
+      const data = await res.json();
+      setBookings(data);
+    } catch (error) {
+      console.error("Failed to load bookings", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    // loadBookings();
+  }, [loadBookings]);
 
   // Load data
   const loadPoojas = async () => {
@@ -102,6 +127,24 @@ export default function AdminPage() {
             <Button variant="outline" onClick={() => deletePooja(pooja.id)}>
               Delete
             </Button>
+          </Card>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {bookings.map((b) => (
+          <Card key={b._id} className="p-4">
+            <p>
+              <b>Name:</b> {b.name}
+            </p>
+            <p>
+              <b>Phone:</b> {b.phone}
+            </p>
+            <p>
+              <b>Date:</b> {b.date}
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              {new Date(b.createdAt).toLocaleString()}
+            </p>
           </Card>
         ))}
       </div>

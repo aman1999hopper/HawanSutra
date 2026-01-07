@@ -1,30 +1,43 @@
-import { poojaList } from "@/data/poojas";
+import { notFound } from "next/navigation";
+import Button from "@/components/ui/Button";
+import Link from "next/link";
+import Pooja from "@/app/models/Pooja";
+import { connectDB } from "@/lib/db";
 
-export default function PoojaDetails({ params }: { params: { id: string } }) {
-  const pooja = poojaList.find((p) => p.id === params.id);
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function PoojaDetailPage({ params }: Props) {
+  const { id } = await params 
+  await connectDB();
+
+  const pooja = await Pooja.findOne({ slug: id }).lean();
 
   if (!pooja) {
-    return <p className="p-6">Pooja not found.</p>;
+    notFound();
   }
 
   return (
-    <main className="p-6">
-      <h1 className="text-3xl font-bold text-gray-800">{pooja.title}</h1>
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-bold">{pooja.title}</h1>
 
-      <img
-        src={pooja.image}
-        className="w-full max-w-md rounded-lg shadow mt-4"
-      />
-
-      <p className="text-gray-600 mt-4">{pooja.shortDesc}</p>
-
-      <p className="mt-4 font-semibold text-xl">
-        Price: ₹{pooja.price.toLocaleString()}
+      <p className="text-gray-600 mt-3">
+        {pooja.shortDesc}
       </p>
 
-      <p className="text-sm text-gray-500 mt-1">
-        Duration: {pooja.durationMinutes ?? 60} minutes
+      <p className="mt-4 font-semibold text-lg text-orange-600">
+        ₹{pooja.price}
       </p>
-    </main>
+
+      <Link
+        href={`/poojas/${pooja._id}/book`}
+        className="inline-block mt-6"
+      >
+        <Button>Book Now</Button>
+      </Link>
+    </div>
   );
 }
